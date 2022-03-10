@@ -7,12 +7,7 @@ pipeline {
     agent any
 
     stages {
-	stage('Clean Workspace') {
-	    steps {
-		cleanWs()
-	    }
-	}
-
+	
         stage('Hello') {
             steps {
                 echo 'Hello World'
@@ -20,5 +15,24 @@ pipeline {
                 sh 'echo ${param}'
             }
         }
+
+	stage('Execute shell') {
+	     agent {
+		label 'built-in'
+	     }
+
+	     steps {
+		sh 'ls'
+		sh 'chmod +x File.sh'
+		sh './File.sh'
+	     }
+	}
+
+	stage('Clean Workspace') {
+	    steps {
+		cleanWs()
+	    }
+	}
+
     }
 }
