@@ -13,8 +13,8 @@ pipeline {
       stage('Hello') {
         steps {
             echo 'Hello World'
-            echo "${param}"
-            sh 'echo ${param}'
+            echo "${BRANCH}"
+            sh 'echo ${BRANCH}'
         }
       }
 
